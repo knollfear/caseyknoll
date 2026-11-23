@@ -11,6 +11,21 @@
   <!-- Ask search engines not to list this page. -->
   <meta name="robots" content="noindex, nofollow">
   <title>{{ .Title }}</title>
+
+  <!-- Link preview: what shows up when someone pastes this link into a
+       text, email, or chat. The details come from content/birthday.md. -->
+  {{ $summary := printf "%s, %s at %s. Come jump with Casey! 🦖" .Params.party_day .Params.party_time .Params.place }}
+  <meta name="description" content="{{ $summary }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:title" content="You're invited: {{ .Title }}">
+  <meta property="og:description" content="{{ $summary }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <!-- Colors the browser's top bar on phones (jungle green). -->
+  <meta name="theme-color" content="#14532d">
+
   <!-- "Luckiest Guy" is the big chunky font for headings. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
