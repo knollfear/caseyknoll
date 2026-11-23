@@ -1,0 +1,187 @@
+/*
+  Styles for Casey's birthday invite (layouts/_default/birthday.html).
+  Try changing the colors below and watch the page change!
+*/
+
+:root {
+  --sky: #bae6fd;          /* light blue sky at the top */
+  --grass: #86efac;        /* green grass at the bottom */
+  --jungle: #14532d;       /* dark green for big headings */
+  --ink: #1f2430;          /* regular text */
+  --card: #ffffff;         /* the white invite card */
+  --orange: #c2410c;       /* the waiver button */
+  --green: #15803d;        /* the other buttons */
+  --trampoline: #1e3a8a;   /* the trampoline under the dinos */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  /* Sky on top, grass on the bottom */
+  background: linear-gradient(to bottom, var(--sky), var(--grass));
+}
+
+/* ---------- Bouncing dinosaurs ---------- */
+
+.bounce-zone {
+  display: flex;
+  justify-content: center;
+  /* clamp(smallest, grows-with-screen, biggest): the dinos and the space
+     between them shrink on a phone so all five fit across. */
+  gap: clamp(0.5rem, 3vw, 1.5rem);
+  padding-top: 2.5rem;
+  font-size: clamp(2rem, 10vw, 3rem);
+}
+
+.dino {
+  display: inline-block;
+  animation: bounce 1.2s ease-in-out infinite;
+}
+
+/* Each dino starts its jump a little later than the one before */
+.dino-2 { animation-delay: 0.2s; }
+.dino-3 { animation-delay: 0.4s; }
+.dino-4 { animation-delay: 0.6s; }
+.dino-5 { animation-delay: 0.8s; }
+
+/* The jump: start on the trampoline, go up, come back down */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-1.5rem); }
+}
+
+/* Some people get dizzy from moving things, so we stop the
+   bouncing if their computer asks for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  .dino { animation: none; }
+}
+
+.trampoline {
+  width: min(22rem, 85%);
+  height: 0.75rem;
+  margin: 0 auto 1.5rem;
+  border-radius: 999px;
+  background: var(--trampoline);
+}
+
+/* ---------- The invite card ---------- */
+
+.invite {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background: var(--card);
+  border: 6px solid var(--jungle);
+  border-radius: 1.5rem;
+  text-align: center;
+}
+
+/* On wider screens, leave space at the sides */
+@media (min-width: 600px) {
+  .invite { padding: 2.5rem; }
+}
+@media (max-width: 599px) {
+  .invite { margin: 0 1rem; }
+}
+
+.youre-invited {
+  margin: 0;
+  font-family: "Luckiest Guy", system-ui, sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: var(--orange);
+}
+
+h1 {
+  margin: 0.25rem 0 1rem;
+  font-family: "Luckiest Guy", system-ui, sans-serif;
+  font-weight: normal;
+  font-size: clamp(2rem, 9vw, 2.6rem);
+  line-height: 1.1;
+  color: var(--jungle);
+}
+
+/* The giant number 8 in a circle */
+.big-eight {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.6em;
+  border-radius: 50%;
+  background: var(--jungle);
+  color: var(--card);
+}
+
+.message p { margin: 0.5rem 0; }
+
+/* ---------- When / Where / RSVP ---------- */
+
+.details {
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.detail {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: #f0fdf4;  /* very light green */
+  border-radius: 0.75rem;
+}
+
+.detail dt {
+  font-weight: 700;
+  color: var(--jungle);
+}
+
+.detail dd { margin: 0.25rem 0 0; }
+
+/* ---------- Buttons ---------- */
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.button {
+  display: block;
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  background: var(--green);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover { filter: brightness(1.15); }
+
+.button-waiver { background: var(--orange); }
+
+/* ---------- Bottom bits ---------- */
+
+.fine-print {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.dino-row {
+  margin: 1rem 0 0;
+  font-size: 1.5rem;
+}
+
+.footer {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.footer a {
+  color: var(--jungle);
+  font-weight: 700;
+}
