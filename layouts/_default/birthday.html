@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+  Casey's birthday invite page.
+  This file is the HTML "skeleton". The words and party details live in
+  content/birthday.md, and the colors and bouncing live in static/css/birthday.css.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Ask search engines not to list this page. -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>{{ .Title }}</title>
+  <!-- "Luckiest Guy" is the big chunky font for headings. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap">
+  <link rel="stylesheet" href="{{ "css/birthday.css" | relURL }}">
+</head>
+<body>
+
+  <!-- Dinosaurs bouncing on a trampoline! Each one has its own class
+       so it can jump at a different time. -->
+  <div class="bounce-zone" aria-hidden="true">
+    <span class="dino dino-1">🦖</span>
+    <span class="dino dino-2">🦕</span>
+    <span class="dino dino-3">🦖</span>
+    <span class="dino dino-4">🦕</span>
+    <span class="dino dino-5">🦖</span>
+  </div>
+  <div class="trampoline" aria-hidden="true"></div>
+
+  <main class="invite">
+    <p class="youre-invited">You're invited!</p>
+    <h1>Casey Turns <span class="big-eight">8</span></h1>
+
+    <div class="message">
+      {{ .Content }}
+    </div>
+
+    <!-- The party details, read from content/birthday.md -->
+    <dl class="details">
+      <div class="detail">
+        <dt>🗓️ When</dt>
+        <dd>{{ .Params.party_day }}<br>{{ .Params.party_time }}<br><strong>{{ .Params.check_in }}</strong></dd>
+      </div>
+      <div class="detail">
+        <dt>📍 Where</dt>
+        <dd>{{ .Params.place }}<br>{{ .Params.address }}</dd>
+      </div>
+      <div class="detail">
+        <dt>✉️ RSVP</dt>
+        <dd>Reply to the text or email that sent you this link.</dd>
+      </div>
+    </dl>
+
+    <!-- Big buttons for the important stuff -->
+    <div class="buttons">
+      <a class="button button-waiver" href="{{ .Params.waiver_url }}">✍️ Fill out the jump waiver</a>
+      <a class="button" href="{{ .Params.map_url }}">🗺️ Get directions</a>
+      <a class="button" href="{{ .Params.calendar_url }}">📅 Add to calendar</a>
+    </div>
+
+    <p class="fine-print">
+      Every jumper needs a signed waiver before jumping. Grown-ups sign for kids
+      under 18. Please arrive on time for check-in so you don't miss any jump time!
+    </p>
+
+    <p class="dino-row" aria-hidden="true">🌋 🌿 🦕 🌿 🦖 🌿 🥚 🌿 🦕 🌿 🌋</p>
+  </main>
+
+  <footer class="footer">
+    <a href="{{ "/" | relURL }}">Visit Casey's website →</a>
+  </footer>
+
+</body>
+</html>
